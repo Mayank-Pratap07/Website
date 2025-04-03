@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCHRITT FUER SCHRITT</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
+
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <a href="index.html"><img src="logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="#home">HOME</a></li>
+                    <li><a href="#about">FACILITIES</a></li>
+                    <li><a href="#courses">COURSES AND FEES</a></li>
+                    <li><a href="#reviews">REVIEWS AND RESULTS</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+        <div class="text-box">
+            <h1>LEARN GERMAN STEP BY STEP</h1>
+            <p>
+                We help you in learning German at your pace in the easiest way.<br>A language should be learned not just to gain the certificate but to be able to speak it and we encourage you all to follow this and have fun while learning it.
+            </p>
+            <a href="#contact" class="hero-btn">CONTACT US TO KNOW MORE</a>
+
+
+        </div>
+    </section>
+    <!---------course------------>
+    <<section id="courses" class="course">
+        <h1>COURSES WE OFFER</h1>
+        <p2> We offer a wide range of courses from A1 to B2 and also grammar revision and exam preparations.</p2>
+        <div class="row">
+            <div class="course-column">
+                <h3>A1</h3>
+                <p1>The A1 level makes you communicate in a simple manner if the person you are speaking to talks slowly and clearly. You can introduce yourself and others, as well as ask others about themselves, e.g. where they live, who they know and what they own. </p1>
+                <p><strong>Fee: €210</strong></p>
+            </div>
+            <div class="course-column">
+                <h3>A2</h3>
+                <p1> The A2 Level helps you understand and use sentences and common expressions in everyday situations, describe your background and education, immediate surroundings and other matters associated with your immediate needs in a simple way. </p1>
+                <p><strong>Fee: €220</strong></p>
+            </div>
+            <div class="course-column">
+                <h3>B1</h3>
+                <p1>The B1 level helps you understand the main points of information in conversations and texts on familiar matters relating to work, school and leisure time, etc. when clear, standard language is used, deal with most situations typically encountered when travelling in German-speaking countries, express yourself simply and coherently when talking about familiar topics and areas of personal interest. </p1>
+                <p><strong>Fee: €240</strong></p>
+            </div>
+            <div class="course-column">
+                <h3>B2</h3>
+
+                <p1>The B2 level makes you understand the main contents of complex texts on concrete and abstract topics, as well as technical discussions in your own area of specialization, communicate so spontaneously and fluently that a normal conversation with native speakers is readily possible without a great deal of effort on either side. </p1>
+                <p><strong>Fee: B2.1:€240, B2.2:€250 </strong></p>
+
+
+            </div>
+        </div>
+    </section>
+    <!----------facilities-------->
+    <section id="about" class="facilities">
+        <h1>Our Facilities</h1>
+        <p2>Facilities which are offered in our courses are</p2>
+
+        <div class="row">
+            <div class="facilities-col">
+                <img src="rclass.jpg">
+                <h3>RECORDED SESSIONS</h3>
+                <p>No need to worry if you miss the class or need a quick revision. You can refer to the recorded sessions.</p>
+            </div>
+            <div class="facilities-col">
+                <img src="material.png">
+                <h3>MATERIALS WITH THE COURSES</h3>
+                <p>You recieve all the materials in soft copies along with course without any extra charges.</p>
+            </div>
+            <div class="facilities-col">
+                <img src="sprechen.webp">
+
+                <h3>SPRECHEN CLASSES</h3>
+                <p>Regular sprechen classes over the weekends to improve your day to day conversation skills.</p>
+            </div>
+        </div>
+
+    </section>
+    <!----------reviews-------->
+    <section id="reviews" class="reviews" style="text-align: center;">
+        <h1>REVIEWS AND RESULTS</h1>
+
+        <h2>Leave Your Review</h2>
+        <form id="reviewform" onsubmit="addReview(event)">
+    =
+            <label for="review">Your Review:</label>
+            <textarea id="review" name="review" rows="2" placeholder="Write your review..." required></textarea><br>
+            <button type="submit" class="hero-btn">Submit Review</button>
+        </form>
+
+        
+        <div id="review-wall"></div>
+    </section>
+    <!----------contact-------->
+    <section id="contact" class="contact" style="text-align: center;">
+        <h1>CONTACT US</h1>
+        <p>Feel free to reach out to us for any inquiries:</p>
+        <p><strong>Phone:</strong> +4915781399367</p> <!-- Replace with your number -->
+
+
+        <h2>Fill Out the Form Below</h2>
+        <a href="https://forms.gle/nYvxQFxndLnPKAUR9" target="_blank" class="hero-btn">Fill Google Form</a>
+    </section>
+<script>
+    // Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyC5xhUiF34UcKNdYh6ZF1aCO-AnAGt_8KE",
+    authDomain: "reviews-a9006.firebaseapp.com",
+    databaseURL: "https://reviews-a9006-default-rtdb.firebaseio.com/",
+    projectId: "reviews-a9006",
+    storageBucket: "reviews-a9006.firebasestorage.app",
+    messagingSenderId: "1064626635400",
+    appId: "1:1064626635400:web:3d915abfd0f344aa1c153d",
+    measurementId: "G-YVJ25ZNS59"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+// Menu Toggle Functionality
+const navLinks = document.getElementById("navLinks");
+function showMenu() {
+    navLinks.style.right = "0";
+}
+function hideMenu() {
+    navLinks.style.right = "-200px";
+}
+
+// Add Review Function
+async function addReview(event) {
+    event.preventDefault();
+    let review = document.getElementById("review").value.trim();
+
+    if (review === "") {
+        alert("Please write something before submitting!");
+        return;
+    }
+
+    try {
+        let currentDate = new Date().toLocaleString();
+        let newReview = { text: review, date: currentDate };
+
+        await database.ref('reviews').push(newReview);
+        alert("Thank you for your feedback!");
+        document.getElementById("review").value = "";
+    } catch (error) {
+        console.error("Error submitting review:", error);
+        alert("Failed to submit review. Please try again later.");
+    }
+}
+
+// Load Reviews Function
+function loadReviews() {
+    let reviewWall = document.getElementById("review-wall");
+    reviewWall.innerHTML = "<div class='spinner'></div>"; // Show spinner while loading
+
+    database.ref('reviews').orderByChild("date").on('value', (snapshot) => {
+        reviewWall.innerHTML = ""; // Clear spinner
+        let reviews = snapshot.val();
+
+        if (!reviews) {
+            reviewWall.innerHTML = "<p>No reviews yet!</p>";
+            return;
+        }
+
+        Object.keys(reviews).reverse().forEach(key => {
+            let review = reviews[key];
+            let reviewBox = document.createElement("div");
+            reviewBox.classList.add("review-box");
+            reviewBox.innerHTML = `
+                <p>🌟 ${review.text}</p>
+                <small>${review.date}</small>
+                <button onclick="editReview('${key}')">Edit</button>
+                <button onclick="deleteReview('${key}')">Delete</button>
+            `;
+            reviewWall.appendChild(reviewBox);
+        });
+    });
+}
+
+// Edit Review Function
+async function editReview(key) {
+    let newReviewText = prompt("Edit your review:");
+    if (newReviewText && newReviewText.trim() !== "") {
+        try {
+            await database.ref(`reviews/${key}`).update({ text: newReviewText.trim() });
+        } catch (error) {
+            alert("Failed to edit review. Please try again.");
+            console.error(error);
+        }
+    }
+}
+
+// Delete Review Function
+async function deleteReview(key) {
+    if (confirm("Are you sure you want to delete this review?")) {
+        try {
+            await database.ref(`reviews/${key}`).remove();
+        } catch (error) {
+            alert("Failed to delete review. Please try again.");
+            console.error(error);
+        }
+    }
+}
+
+// Smooth Scroll for Navigation
+document.querySelectorAll('nav ul li a').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector(anchor.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+// Load Reviews on Page Load
+window.onload = loadReviews;
+</script>
+</body>
+</html>
+<!-----------javaScript------>
+<!--
+<script>
+    var navLinks = document.getElementById("navLinks");
+    function showMenu() {
+        navLinks.style.right = "0";
+    }
+    function hideMenu() {
+        navLinks.style.right = "-200px";
+    }
+    function addReview(event) {
+        event.preventDefault();
+        let review = document.getElementById("review").value;
+        let reviewWall = document.getElementById("review-wall");
+
+        if (review.trim() !== "") {
+            let newReview = document.createElement("div");
+            newReview.classList.add("review-box"); // Optional class for styling
+            let currentDate = new Date().toLocaleString();
+
+            newReview.innerHTML = `
+                <p>🌟 ${review}</p>
+                <small>${currentDate}</small>
+                <button onclick="editReview(this)">Edit</button>
+                <button onclick="deleteReview(this)">Delete</button>
+            `;
+
+            reviewWall.appendChild(newReview);
+            document.getElementById("review").value = "";
+            alert("Thank you for your feedback!");
+            localStorage.setItem("reviews", reviewWall.innerHTML);
+        } else {
+            alert("Please write something before submitting!");
+        }
+    }
+    window.onload = function () {
+        let savedReviews = localStorage.getItem("reviews");
+        if (savedReviews) {
+            document.getElementById("review-wall").innerHTML = savedReviews;
+        }
+        window.addEventListener("storage", function () {
+            document.getElementById("review-wall").innerHTML = localStorage.getItem("reviews");
+        });
+    };
+    
+    function editReview(button) {
+        let reviewBox = button.parentElement;
+        let reviewText = reviewBox.querySelector("p").innerText.replace("🌟 ", "");
+        let newReview = prompt("Edit your review:", reviewText);
+        if (newReview !== null && newReview.trim() !== "") {
+            reviewBox.querySelector("p").innerHTML = `🌟 ${newReview}`;
+            localStorage.setItem("reviews", document.getElementById("review-wall").innerHTML);
+        }
+    }
+    function deleteReview(button) {
+        let reviewBox = button.parentElement;
+        reviewBox.remove();
+        localStorage.setItem("reviews", document.getElementById("review-wall").innerHTML);
+    }
+
+    document.querySelectorAll('nav ul li a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+-->
+
+
+
+
+        
+     
